@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20231207-1620" author="admin">
+        <createTable tableName="curriculum_vitae">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="is_shared" type="BOOLEAN"/>
+            <column name="user_id" type="VARCHAR(255)"/>
+            <column name="template_id" type="VARCHAR(255)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_at" type="BIGINT"/>
+            <column name="last_updated_by" type="VARCHAR(255)"/>
+            <column name="last_updated_at" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="curriculum_vitae"
+                baseColumnNames="user_id"
+                constraintName="fk_curriculum_vitae_user"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                onDelete="SET NULL"/>
+
+        <addForeignKeyConstraint
+                baseTableName="curriculum_vitae"
+                baseColumnNames="template_id"
+                constraintName="fk_curriculum_vitae_template"
+                referencedTableName="templates"
+                referencedColumnNames="id"
+                onDelete="SET NULL"/>
+    </changeSet>
+</databaseChangeLog>

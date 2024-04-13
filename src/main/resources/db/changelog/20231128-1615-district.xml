@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20231128-1615" author="haunt">
+        <createTable tableName="districts">
+            <column name="code" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="NVARCHAR(255)"/>
+            <column name="name_en" type="VARCHAR(255)"/>
+            <column name="full_name" type="NVARCHAR(255)"/>
+            <column name="full_name_en" type="VARCHAR(255)"/>
+            <column name="code_name" type="VARCHAR(255)"/>
+            <column name="province_code" type="VARCHAR(20)">
+                <constraints foreignKeyName="fk_province_id"
+                             referencedTableName="provinces"
+                             referencedColumnNames="code"
+                />
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20240221-1040-add-district-data" author="haunt">
+        <loadData tableName="districts"
+                  file="./db/data/csv/districts_data.csv"/>
+    </changeSet>
+</databaseChangeLog>

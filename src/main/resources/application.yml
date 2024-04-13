@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: job-seeking
+  profiles:
+    active:
+      - dev
+      - dev-local
+  liquibase:
+    change-log: classpath:db/master.xml
+
+  datasource:
+    url: jdbc:mysql://job_seeking_mysql_db:3306/job_seeking?autoReconnect=true&useSSL=false
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+application:
+  minio:
+    bucket-name: ${MINIO_BUCKET_NAME:job-seeking}
+    url: ${MINIO_URL:http://job_seeking_minio:9000}
+    access-key: ${MINIO_ACCESS_KEY:root}
+    secret-key: ${MINIO_SECRET_KEY:root@1234}
+
+server:
+  port: 8088

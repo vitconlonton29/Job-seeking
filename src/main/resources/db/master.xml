@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="/changelog/20231207-1613-template.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20231128-1614-province.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20231128-1615-district.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20231128-1617-ward.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20231129-1400-role.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20231129-1420-account.xml" relativeToChangelogFile="true"/>
+    <include file="/changelog/20231129-1444-user.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20231207-1618-address.xml" relativeToChangelogFile="true"/>
+    <include file="/changelog/20231207-1619-attribute.xml" relativeToChangelogFile="true"/>
+    <include file="/changelog/20231207-1620-curriculum_vitae.xml" relativeToChangelogFile="true"/>
+    <include file="/changelog/20231207-1622-curriculum_vitae_attribute.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20231207-1623-company.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20231207-1623-employer.xml" relativeToChangelogFile="true"/>
+    <include file="/changelog/20231207-1625-job.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20231207-1626-image.xml" relativeToChangelogFile="true"/>
+    <include file="/changelog/20231207-1627-job-application.xml" relativeToChangelogFile="true"/>
+
+</databaseChangeLog>

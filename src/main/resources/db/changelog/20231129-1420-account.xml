@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20231129-1420" author="haunt">
+        <createTable tableName="accounts">
+            <!-- Inherit columns from BaseEntityWithUpdater -->
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_at" type="BIGINT"/>
+            <column name="last_updated_by" type="VARCHAR(255)"/>
+            <column name="last_updated_at" type="BIGINT"/>
+
+            <!-- Account-specific columns -->
+            <column name="username" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="is_active" type="INTEGER"/>
+            <column name="role_id" type="VARCHAR(255)"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="accounts"
+                baseColumnNames="role_id"
+                constraintName="fk_account_role"
+                referencedTableName="roles"
+                referencedColumnNames="id"
+                onDelete="SET NULL"/>
+    </changeSet>
+</databaseChangeLog>

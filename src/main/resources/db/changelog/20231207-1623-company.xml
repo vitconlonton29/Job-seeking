@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20231207-1623" author="haunt">
+        <createTable tableName="companies">
+            <!-- Inherit columns from BaseEntityWithUpdater -->
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_at" type="BIGINT"/>
+            <column name="last_updated_by" type="VARCHAR(255)"/>
+            <column name="last_updated_at" type="BIGINT"/>
+
+            <!-- Company-specific columns -->
+            <column name="link" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="employee_number" type="INTEGER"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="tax_code" type="VARCHAR(255)"/>
+            <column name="phone_number" type="VARCHAR(255)"/>
+            <column name="address_id" type="VARCHAR(255)"/>
+            <column name="is_verified" type="BOOLEAN"/>
+            <column name="is_deleted" type="BOOLEAN"/>
+
+        </createTable>
+        <addForeignKeyConstraint
+                baseTableName="companies"
+                baseColumnNames="address_id"
+                constraintName="fk_companies_address"
+                referencedTableName="addresses"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+</databaseChangeLog>

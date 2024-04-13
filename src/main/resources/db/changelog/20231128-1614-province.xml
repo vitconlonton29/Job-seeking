@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20231128-1614" author="haunt">
+        <createTable tableName="provinces">
+            <column name="code" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="NVARCHAR(255)"/>
+            <column name="name_en" type="VARCHAR(255)"/>
+            <column name="full_name" type="NVARCHAR(255)"/>
+            <column name="full_name_en" type="VARCHAR(255)"/>
+            <column name="code_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20240221-1030-add-province-data" author="haunt">
+        <loadData tableName="provinces"
+                  file="./db/data/csv/provinces_data.csv"/>
+    </changeSet>
+</databaseChangeLog>

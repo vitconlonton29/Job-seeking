@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20231207-1625" author="haunt">
+        <createTable tableName="jobs">
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="deadline_submission" type="BIGINT"/>
+            <column name="rank" type="VARCHAR(255)"/>
+            <column name="year_experience_amount" type="INTEGER"/>
+            <column name="recruits_amount" type="INTEGER"/>
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="working_form" type="VARCHAR(255)"/>
+            <column name="salary" type="DOUBLE"/>
+            <column name="salary_currency_code" type="VARCHAR(255)"/>
+            <column name="company_id" type="VARCHAR(255)"/>
+            <column name="address_id" type="VARCHAR(255)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_at" type="BIGINT"/>
+            <column name="last_updated_by" type="VARCHAR(255)"/>
+            <column name="last_updated_at" type="BIGINT"/>
+        </createTable>
+
+
+        <addForeignKeyConstraint
+                baseTableName="jobs"
+                baseColumnNames="company_id"
+                constraintName="fk_job_company"
+                referencedTableName="companies"
+                referencedColumnNames="id"
+                onDelete="SET NULL"/>
+
+        <addForeignKeyConstraint
+                baseTableName="jobs"
+                baseColumnNames="address_id"
+                constraintName="fk_job_address"
+                referencedTableName="addresses"
+                referencedColumnNames="id"
+                onDelete="SET NULL"/>
+    </changeSet>
+</databaseChangeLog>

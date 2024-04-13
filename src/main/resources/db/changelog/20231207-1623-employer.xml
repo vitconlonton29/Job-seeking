@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20231207-1623" author="haunt">
+        <createTable tableName="employers">
+            <!-- Inherit columns from BaseEntityWithUpdater -->
+            <column name="id" type="VARCHAR(255)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="created_at" type="BIGINT"/>
+            <column name="last_updated_by" type="VARCHAR(255)"/>
+            <column name="last_updated_at" type="BIGINT"/>
+
+            <!-- Employer-specific columns -->
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="company_id" type="VARCHAR(255)"/>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="employers"
+                baseColumnNames="id"
+                constraintName="fk_employers_accounts"
+                referencedTableName="accounts"
+                referencedColumnNames="id"
+        />
+        <addForeignKeyConstraint
+                baseTableName="employers"
+                baseColumnNames="company_id"
+                constraintName="fk_employers_companies"
+                referencedTableName="companies"
+                referencedColumnNames="id"
+        />
+    </changeSet>
+</databaseChangeLog>
